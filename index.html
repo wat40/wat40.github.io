@@ -4,35 +4,681 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusBot - Discord Bot Dashboard</title>
+    <meta name="description" content="NexusBot - A powerful Discord bot with moderation, music, economy, and entertainment features">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #00D4FF;
+            --secondary-color: #6B46C1;
+            --accent-color: #00FF88;
+            --background-color: #1A1A1A;
+            --surface-color: #2A2A2A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --radius-md: 1rem;
+            --radius-lg: 1.5rem;
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+            --transition-normal: 0.3s ease;
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #00D4FF, #6B46C1);
-            color: white;
-            text-align: center;
-            padding: 50px;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        /* Typography */
+        h1 { font-size: 3.5rem; font-weight: 700; }
+        h2 { font-size: 2.5rem; font-weight: 600; }
+        h3 { font-size: 2rem; font-weight: 600; }
+        p { color: var(--text-secondary); }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Layout */
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: rgba(26, 26, 26, 0.9);
-            padding: 40px;
-            border-radius: 15px;
+            padding: 0 var(--spacing-md);
         }
-        h1 { color: #00FF88; }
-        .feature { margin: 20px 0; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-large {
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: var(--spacing-sm) 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+            background: linear-gradient(135deg, var(--background-color), var(--surface-color));
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bot-preview {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .bot-avatar {
+            font-size: 8rem;
+            color: white;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--spacing-xl) 0;
+            background: var(--surface-color);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .feature-card {
+            background: var(--background-color);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: var(--spacing-md);
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Commands Section */
+        .commands {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .command-item {
+            background: var(--surface-color);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .command-name {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .command-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--surface-color);
+            padding: var(--spacing-xl) 0 var(--spacing-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .commands-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🤖 NexusBot</h1>
-        <h2>Comprehensive Discord Bot</h2>
-        <div class="feature">🛡️ Advanced Moderation</div>
-        <div class="feature">🎵 Music System</div>
-        <div class="feature">💰 Economy & Leveling</div>
-        <div class="feature">🎮 Entertainment Commands</div>
-        <div class="feature">📊 Analytics Dashboard</div>
-        <p>Dashboard coming soon...</p>
-    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-robot"></i>
+                <span>NexusBot</span>
+            </div>
+            <div class="nav-actions">
+                <a href="#" onclick="inviteBot()" class="btn btn-primary">
+                    <i class="fab fa-discord"></i>
+                    Invite Bot
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Meet <span class="gradient-text">NexusBot</span>
+                        <br>Your Ultimate Discord Companion
+                    </h1>
+                    <p class="hero-description">
+                        A comprehensive Discord bot featuring advanced moderation, music streaming, 
+                        economy system, entertainment commands, and powerful server management tools.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Commands</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">Fast</div>
+                            <div class="stat-label">Response</div>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#" onclick="inviteBot()" class="btn btn-primary btn-large">
+                            <i class="fab fa-discord"></i>
+                            Add to Discord
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="bot-preview">
+                        <div class="bot-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-description">
+                    Everything you need to manage and entertain your Discord community
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Advanced Moderation</h3>
+                    <p class="feature-description">
+                        Comprehensive moderation tools including kick, ban, timeout, warnings, 
+                        and automatic moderation with customizable rules.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Kick & Ban members</li>
+                        <li>Warning system</li>
+                        <li>Auto-moderation</li>
+                        <li>Moderation logs</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="feature-title">Music System</h3>
+                    <p class="feature-description">
+                        High-quality music streaming from YouTube and Spotify with 
+                        queue management and audio controls.
+                    </p>
+                    <ul class="feature-list">
+                        <li>YouTube & Spotify support</li>
+                        <li>Queue management</li>
+                        <li>Volume controls</li>
+                        <li>Playlist support</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="feature-title">Economy & Leveling</h3>
+                    <p class="feature-description">
+                        Engaging economy system with virtual currency, daily rewards, 
+                        XP leveling, and interactive shop features.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Virtual currency</li>
+                        <li>Daily rewards</li>
+                        <li>XP & leveling</li>
+                        <li>Shop system</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="feature-title">Entertainment</h3>
+                    <p class="feature-description">
+                        Fun commands and games including magic 8-ball, dice rolling, 
+                        trivia, polls, and giveaway management.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Magic 8-ball</li>
+                        <li>Dice & games</li>
+                        <li>Polls & giveaways</li>
+                        <li>Trivia system</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="feature-title">Utility Tools</h3>
+                    <p class="feature-description">
+                        Helpful utilities including weather information, timezone conversion, 
+                        translation services, and server management.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Weather information</li>
+                        <li>Translation services</li>
+                        <li>Server statistics</li>
+                        <li>Custom commands</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="feature-title">Configuration</h3>
+                    <p class="feature-description">
+                        Extensive customization options with per-server settings, 
+                        custom prefixes, and role-based permissions.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Custom prefixes</li>
+                        <li>Role permissions</li>
+                        <li>Channel settings</li>
+                        <li>Command toggles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commands Section -->
+    <section class="commands">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular Commands</h2>
+                <p class="section-description">
+                    Try these commands to get started with NexusBot
+                </p>
+            </div>
+            <div class="commands-grid">
+                <div class="command-item">
+                    <div class="command-name">-help</div>
+                    <div class="command-description">Show all available commands</div>
+                </div>
+                <div class="command-item">
+                    <div class="command-name">-ping</div>
+                    <div class="command-description">Check bot latency and uptime</div>
+                </div>
+                <div class="command-item">
+                    <div class="command-name">-8ball</div>
+                    <div class="command-description">Ask the magic 8-ball a question</div>
+                </div>
+                <div class="command-item">
+                    <div class="command-name">-kick</div>
+                    <div class="command-description">Kick a member from the server</div>
+                </div>
+                <div class="command-item">
+                    <div class="command-name">-play</div>
+                    <div class="command-description">Play music from YouTube or Spotify</div>
+                </div>
+                <div class="command-item">
+                    <div class="command-name">-balance</div>
+                    <div class="command-description">Check your virtual currency balance</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-robot"></i>
+                <span>NexusBot</span>
+            </div>
+            <p class="footer-description">
+                The ultimate Discord bot for community management and entertainment.
+            </p>
+            <div class="footer-links">
+                <a href="#" onclick="inviteBot()">Invite Bot</a>
+                <a href="https://github.com/wat40" target="_blank">GitHub</a>
+                <a href="callback.html">Spotify Setup</a>
+            </div>
+            <p>&copy; 2025 NexusBot. Made with ❤️ for the Discord community.</p>
+        </div>
+    </footer>
+
+    <script>
+        function inviteBot() {
+            const inviteUrl = 'https://discord.com/api/oauth2/authorize?client_id=1396212968743505930&permissions=8&scope=bot%20applications.commands';
+            window.open(inviteUrl, '_blank');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(26, 26, 26, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(26, 26, 26, 0.95)';
+            }
+        });
+    </script>
 </body>
 </html>
