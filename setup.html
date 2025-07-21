@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Guide - NexusBot Dashboard</title>
+    <meta name="description" content="Complete setup guide for NexusBot - Learn how to invite, configure, and customize your Discord bot">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/setup.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-robot"></i>
+                <span>NexusBot</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="commands.html" class="nav-link">Commands</a>
+                <a href="setup.html" class="nav-link active">Setup</a>
+                <a href="index.html#stats" class="nav-link">Stats</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#invite" class="btn btn-primary">
+                    <i class="fab fa-discord"></i>
+                    Invite Bot
+                </a>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Setup Header -->
+    <section class="setup-header">
+        <div class="container">
+            <div class="setup-hero">
+                <h1 class="setup-title">
+                    <span class="gradient-text">Setup Guide</span>
+                </h1>
+                <p class="setup-description">
+                    Get NexusBot up and running in your Discord server in just a few simple steps.
+                </p>
+                <div class="setup-progress">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Invite Bot</div>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Configure</div>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Customize</div>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Enjoy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup Steps -->
+    <section class="setup-content">
+        <div class="container">
+            <!-- Step 1: Invite Bot -->
+            <div class="setup-step" id="step-1">
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <div class="step-info">
+                        <h2 class="step-title">Step 1: Invite NexusBot</h2>
+                        <p class="step-description">Add NexusBot to your Discord server with the required permissions.</p>
+                    </div>
+                </div>
+                <div class="step-content">
+                    <div class="setup-grid">
+                        <div class="setup-instructions">
+                            <h3>Quick Invite</h3>
+                            <p>Click the button below to invite NexusBot with all recommended permissions:</p>
+                            <a href="#invite" class="btn btn-primary btn-large invite-btn">
+                                <i class="fab fa-discord"></i>
+                                Invite NexusBot
+                            </a>
+                            
+                            <h3>Manual Setup</h3>
+                            <ol class="setup-list">
+                                <li>Go to the <a href="https://discord.com/developers/applications" target="_blank">Discord Developer Portal</a></li>
+                                <li>Select your application or create a new one</li>
+                                <li>Go to the "OAuth2" → "URL Generator" section</li>
+                                <li>Select "bot" and "applications.commands" scopes</li>
+                                <li>Choose the required permissions (see recommended permissions)</li>
+                                <li>Copy the generated URL and open it in your browser</li>
+                                <li>Select your server and authorize the bot</li>
+                            </ol>
+                        </div>
+                        <div class="setup-info-box">
+                            <h4>Recommended Permissions</h4>
+                            <div class="permissions-grid">
+                                <div class="permission-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>Send Messages</span>
+                                </div>
+                                <div class="permission-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>Embed Links</span>
+                                </div>
+                                <div class="permission-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>Read Message History</span>
+                                </div>
+                                <div class="permission-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>Use Slash Commands</span>
+                                </div>
+                                <div class="permission-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>Connect (Voice)</span>
+                                </div>
+                                <div class="permission-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>Speak (Voice)</span>
+                                </div>
+                                <div class="permission-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>Kick Members</span>
+                                </div>
+                                <div class="permission-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>Ban Members</span>
+                                </div>
+                                <div class="permission-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>Manage Messages</span>
+                                </div>
+                                <div class="permission-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>Moderate Members</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Basic Configuration -->
+            <div class="setup-step" id="step-2">
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="step-info">
+                        <h2 class="step-title">Step 2: Basic Configuration</h2>
+                        <p class="step-description">Configure essential settings to get started.</p>
+                    </div>
+                </div>
+                <div class="step-content">
+                    <div class="config-section">
+                        <h3>Set Command Prefix</h3>
+                        <p>Change the default command prefix from <code>-</code> to something else:</p>
+                        <div class="code-example">
+                            <code>-prefix !</code>
+                        </div>
+                        
+                        <h3>Set Moderation Channel</h3>
+                        <p>Designate a channel for moderation logs:</p>
+                        <div class="code-example">
+                            <code>-modchannel #mod-logs</code>
+                        </div>
+                        
+                        <h3>Configure Welcome System</h3>
+                        <p>Set up welcome messages for new members:</p>
+                        <div class="code-example">
+                            <code>-welcome #general Welcome to the server, {user}!</code>
+                        </div>
+                        
+                        <h3>Set Auto Role</h3>
+                        <p>Automatically assign a role to new members:</p>
+                        <div class="code-example">
+                            <code>-autorole @Member</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Advanced Customization -->
+            <div class="setup-step" id="step-3">
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="step-info">
+                        <h2 class="step-title">Step 3: Advanced Customization</h2>
+                        <p class="step-description">Customize NexusBot to fit your server's needs.</p>
+                    </div>
+                </div>
+                <div class="step-content">
+                    <div class="customization-grid">
+                        <div class="custom-section">
+                            <h4>Economy Settings</h4>
+                            <ul>
+                                <li>Enable/disable economy system</li>
+                                <li>Set daily reward amounts</li>
+                                <li>Configure shop items</li>
+                                <li>Customize currency name</li>
+                            </ul>
+                        </div>
+                        <div class="custom-section">
+                            <h4>Leveling System</h4>
+                            <ul>
+                                <li>Enable/disable XP system</li>
+                                <li>Set XP multipliers</li>
+                                <li>Configure level roles</li>
+                                <li>Customize level messages</li>
+                            </ul>
+                        </div>
+                        <div class="custom-section">
+                            <h4>Music Settings</h4>
+                            <ul>
+                                <li>Set default volume</li>
+                                <li>Configure queue limits</li>
+                                <li>Set music channels</li>
+                                <li>Enable/disable features</li>
+                            </ul>
+                        </div>
+                        <div class="custom-section">
+                            <h4>Moderation Rules</h4>
+                            <ul>
+                                <li>Set warning thresholds</li>
+                                <li>Configure auto-moderation</li>
+                                <li>Set spam detection</li>
+                                <li>Customize punishment actions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: You're All Set! -->
+            <div class="setup-step" id="step-4">
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="step-info">
+                        <h2 class="step-title">Step 4: You're All Set!</h2>
+                        <p class="step-description">NexusBot is ready to enhance your Discord server.</p>
+                    </div>
+                </div>
+                <div class="step-content">
+                    <div class="completion-content">
+                        <div class="success-message">
+                            <i class="fas fa-party-horn"></i>
+                            <h3>Congratulations!</h3>
+                            <p>NexusBot is now configured and ready to use in your server.</p>
+                        </div>
+                        
+                        <div class="next-steps">
+                            <h4>What's Next?</h4>
+                            <div class="next-steps-grid">
+                                <a href="commands.html" class="next-step-card">
+                                    <i class="fas fa-list"></i>
+                                    <h5>Explore Commands</h5>
+                                    <p>Browse all available commands and their usage</p>
+                                </a>
+                                <a href="#support" class="next-step-card">
+                                    <i class="fas fa-life-ring"></i>
+                                    <h5>Get Support</h5>
+                                    <p>Join our Discord server for help and updates</p>
+                                </a>
+                                <a href="#docs" class="next-step-card">
+                                    <i class="fas fa-book"></i>
+                                    <h5>Read Documentation</h5>
+                                    <p>Learn about advanced features and customization</p>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="quick-test">
+                            <h4>Quick Test</h4>
+                            <p>Try these commands to make sure everything is working:</p>
+                            <div class="test-commands">
+                                <div class="test-command">
+                                    <code>-ping</code>
+                                    <span>Check if the bot is responding</span>
+                                </div>
+                                <div class="test-command">
+                                    <code>-help</code>
+                                    <span>View available commands</span>
+                                </div>
+                                <div class="test-command">
+                                    <code>-8ball Am I awesome?</code>
+                                    <span>Test the magic 8-ball</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-robot"></i>
+                        <span>NexusBot</span>
+                    </div>
+                    <p class="footer-description">
+                        The ultimate Discord bot for community management and entertainment.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#invite">Invite Bot</a></li>
+                        <li><a href="commands.html">Commands</a></li>
+                        <li><a href="setup.html">Setup Guide</a></li>
+                        <li><a href="#support">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#discord">Discord Server</a></li>
+                        <li><a href="#github">GitHub</a></li>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NexusBot. Made with ❤️ for the Discord community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/setup.js"></script>
+</body>
+</html>
